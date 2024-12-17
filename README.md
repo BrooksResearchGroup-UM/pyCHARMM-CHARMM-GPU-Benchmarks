@@ -24,3 +24,9 @@
 <image src='figures/stmv_bench.png' />
 
 # $MS\lambda D$ Free Energy Benchmarks with pyCHARMM/BLaDE and pyCHARMM/DOMDEC
+
+## Multi-site ligand relative binding free energy calculations in HSP90 - hydrogen mass repartitioning (HMR), 4 fs, NPT 
+> ### pyCHARMM/BLaDE achieves nearly   $45\ ns /day$ on STMV bechmark.
+
+<image src='figures/stmv_bench.png' />
+
