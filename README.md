@@ -6,27 +6,31 @@
 ## DHFR/JAC benchmark - hydrogen mass repartitioning (HMR), 4 fs, NPT 
 > ### pyCHARMM/OpenMM achieves better than $2\ \mu sec/day$ on DHFR/JAC bechmark.
 
-<image src='figures/5_newDHFR.png' />
+<image src='figures/5_newDHFR.jpg' />
 
 ## ApoA1 nanodisc in water - hydrogen mass repartitioning (HMR), 4 fs, NPT 
 > ### pyCHARMM/OpenMM achieves nearly  $600\ ns /day$ on ApoA1 bechmark.
 
-<image src='figures/apoa1_bench.png' />
+<image src='figures/apoa1_bench.jpg' />
 
 ## DMPG membrane bilayer water - hydrogen mass repartitioning (HMR), 4 fs, NPT 
 > ### pyCHARMM/OpenMM achieves greater than  $200\ ns /day$ on DMPG bechmark.
 
-<image src='figures/6_dmpg.png' />
+<image src='figures/6_dmpg.jpg' />
 
 ## 1M particle STMV in water - hydrogen mass repartitioning (HMR), 4 fs, NPT 
 > ### pyCHARMM/OpenMM achieves nearly   $45\ ns /day$ on STMV bechmark.
 
-<image src='figures/stmv_bench.png' />
+<image src='figures/stmv_bench.jpg' />
 
 # $MS\lambda D$ Free Energy Benchmarks with pyCHARMM/BLaDE and pyCHARMM/DOMDEC
 
 ## Multi-site ligand relative binding free energy calculations in HSP90 - hydrogen mass repartitioning (HMR), 4 fs, NPT 
 > ### pyCHARMM/BLaDE achieves nearly   $45\ ns /day$ on STMV bechmark.
 
-<image src='figures/stmv_bench.png' />
+<image src='figures/4)_HSP90.jpg' />
 
+## Multi-site protein stability changes from side chain mutations in T4 Lysozyme - hydrogen mass repartitioning (HMR), 4 fs, NPT 
+> ### pyCHARMM/BLaDE achieves nearly   $45\ ns /day$ on STMV bechmark.
+
+<image src='figures/4)_HSP90.jpg' />
