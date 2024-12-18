@@ -26,11 +26,11 @@
 # $MS\lambda D$ Free Energy Benchmarks with pyCHARMM/BLaDE and pyCHARMM/DOMDEC
 
 ## Multi-site ligand relative binding free energy calculations in HSP90 - hydrogen mass repartitioning (HMR), 4 fs, NPT 
-> ### pyCHARMM/BLaDE achieves nearly   $45\ ns /day$ on STMV bechmark.
+> ### pyCHARMM/BLaDE achieves more than $900\ ns /day$ on ligand RBFE bechmark.
 
-<image src='figures/4)_HSP90.jpg' />
+<image src='figures/4_HSP90.jpg' />
 
 ## Multi-site protein stability changes from side chain mutations in T4 Lysozyme - hydrogen mass repartitioning (HMR), 4 fs, NPT 
-> ### pyCHARMM/BLaDE achieves nearly   $45\ ns /day$ on STMV bechmark.
+> ### pyCHARMM/BLaDE achieves nearly $800\ ns /day$ on protein side chain mutation bechmark.
 
-<image src='figures/4)_HSP90.jpg' />
+<image src='figures/2_T4L.jpg' />
