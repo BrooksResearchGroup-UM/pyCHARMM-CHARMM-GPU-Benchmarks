@@ -41,4 +41,6 @@
 > ### The benchmarks are all run from a single Python script `benchmark.py` and the timing results are appended to the csv file `benchmark.csv`.
 >  ### The data files, rtf, parameter, psf and cooordinate files are all stored in the benchmark subdirectories `<benchmark_name/engine_name/>` (MD benchmarks) or `<benchmark_name/engine_name/template>` ($MS\lambda D$ benchmarks), where `benchmark_name` is *5_newDHFR*, *apoa1_bench*, *6_dmpg*, *stmv_bench* for the MD benchmarks and *2_T4L* and *4_HSP90* for the $MS\lambda D$ benchmarks. `engine_name` refers to *openmm*, *bladelib* or *charmm* (domdec) GPU accelerated engines.
 >  ### The parameters controlling the simulations are all stored in `yaml` files `benchmark.yml` under the `engine_name` subdirectories.
->  ### To run the benchmarks interactively on a given GPU platform 
+>  ### To run the benchmarks interactively on a given GPU platform one runs the command:
+> > #### `python benchmark.py --benchmark='benchmark_name/engine_name' > output` (for standard MD benchmarks)
+> >  #### `python benchmark.py --benchmark='benchmark_name/engine_name/template' > output` (for $MS\lambda D$ benchmarks)
