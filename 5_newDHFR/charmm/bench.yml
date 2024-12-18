@@ -1,0 +1,46 @@
+system: 5dfr
+ngpus: 1
+platform: domdec
+benchmark:
+   niter: 2
+dyn:
+  nprint: 2000
+  nsteps: 10000
+  time_step: 0.004
+  temp: 298.15
+  leap: false
+  lang: false
+  cpt: true
+  pconstant: false
+  pmass: false
+  pref: false
+  pgamma: false
+  hoover: true
+  tmass: 1000
+  nsavl: 0
+  ntrfrq: 10000
+  useblade: false  #'prmc iprs 100 pref 1 prdv 100'
+  useomm: false
+  usedomdec: true
+files:
+  crd: 5dfr.crd
+  param: [['par_all22_prot.inp'], False]
+  pdb: ''
+  psf: 5dfr_hmr.psf
+  rtf: ['top_all22_prot.inp']
+  stream: []
+nnb:
+  ctofnb: 9.0
+  ctonnb: 9.0
+  cutim: 9.0
+  cutnb: 9.0
+  fftx: 64
+  ffty: 64
+  fftz: 64
+  kappa: 0.32
+  vfswit: false
+  vswit: true
+pbc:
+  xtltyp: cubic
+  boxsize: [62.23,62.23,62.23]
+  segments: ['5DFR']
