@@ -1,0 +1,46 @@
+system: stmv_system
+platform: blade
+ngpus: 1
+benchmark:
+   niter: 2
+dyn:
+  nprint: 1000
+  nsteps: 5000
+  time_step: 0.004
+  temp: 298.15
+  leap: true
+  lang: true
+  cpt: false
+  pconstant: false
+  pmass: false
+  pref: false
+  pgamma: false
+  hoover: false
+  tmass: false
+  nsavl: 0
+  ntrfrq: 0
+  useblade: 'prmc iprs 100 pref 1 prdv 100'
+  useomm: false
+  usedomdec: false
+files:
+  crd: stmv_system.crd
+  rtf: ['toppar/top_all36_prot.rtf','toppar/top_all36_na.rtf']
+  pdb: ''
+  psf: stmv_system_hmr.psf
+  param: [['toppar/par_all36m_prot.prm','toppar/par_all36_na.prm'],True]
+  stream: ['toppar/toppar_water_ions.str']
+nnb:
+  ctofnb: 9.0
+  ctonnb: 9.0
+  cutim: 9.0
+  cutnb: 9.0
+  fftx: 216
+  ffty: 216
+  fftz: 216
+  kappa: 0.34
+  vfswit: false
+  vswit: true
+pbc:
+  xtltyp: cubic
+  boxsize: [216.832, 216.832, 216.832]
+  segments: []  #['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12', 'C13', 'C14', 'C15', 'C16', 'C17', 'C18', 'C19', 'C20', 'C21', 'C22', 'C23', 'C24', 'C25', 'C26', 'C27', 'C28', 'C29', 'C30', 'C31', 'C32', 'C33', 'C34', 'C35', 'C36', 'C37', 'C38', 'C39', 'C40', 'C41', 'C42', 'C43', 'C44', 'C45', 'C46', 'C47', 'C48', 'C49', 'C50', 'C51', 'C52', 'C53', 'C54', 'C55', 'C56', 'C57', 'C58', 'C59', 'C60', 'N']

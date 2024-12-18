@@ -1,0 +1,67 @@
+#!/bin/bash
+#SBATCH --job-name=benchmark
+#SBATCH --time=08:30:00
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --gres=gpu:1
+##SBATCH -p Super
+#SBATCH --constraint="rtx5000ada"
+# the above line makes it so that you will get either
+# rtx6000ada's or rtxa6000's etc. 
+
+# DESCRIPTION
+#
+# Run CHARMM on 1 core and 1 GPU.
+
+# NOTE:  The '#SBATCH' stuff needs to be at the top of the file.
+# It is worth your time to look at the man pages for
+# # srun, sbatch, squeue, scancel, sacct and sinfo
+
+# PARTITION information must be included or you might not be able
+# to submit your job.  A partition is analogus to the PBS 'queue'
+#
+# Currently, the available partitions are : brooks, gpu, test, 
+# zimmerman, geva, zgid
+
+# Load Modules 
+
+echo "LOADING MODULES"
+echo
+module load anaconda
+conda activate charmm_env
+# This example will run a basic slurm job in the directory where the 
+# sbatch or srun command was executed.
+
+# This job can be run both as a job array and 
+# as a single job.
+#
+# sbatch -a 0-999 basic.job
+#
+# or 
+#
+# sbatch basic.job
+#
+# Run openmm bench
+python benchmark.py --benchmark='5_newDHFR/openmm' > 5_newDHFR/openmm/newDHFR_openmm_rtx5000ada.log
+python benchmark.py --benchmark='6_dmpg/openmm' > 6_dmpg/openmm/dmpg_openmm_rtx5000ada.log
+python benchmark.py --benchmark='apoa1_bench/openmm' > apoa1_bench/openmm/apoa1_openmm_rtx5000ada.log
+python benchmark.py --benchmark='stmv_bench/openmm' > stmv_bench/openmm/stmv_openmm_rtx5000ada.log
+# Run bladelib bench
+python benchmark.py --benchmark='2_T4L/bladelib/template' > 2_T4L/bladelib/template/t4l_bladelib_rtx5000ada.log
+python benchmark.py --benchmark='4_HSP90/bladelib/template' > 4_HSP90/bladelib/template/hsp_bladelib_rtx5000ada.log
+python benchmark.py --benchmark='5_newDHFR/bladelib' > 5_newDHFR/bladelib/newDHFR_bladelib_rtx5000ada.log
+python benchmark.py --benchmark='6_dmpg/bladelib' > 6_dmpg/bladelib/dmpg_bladelib_rtx5000ada.log
+python benchmark.py --benchmark='apoa1_bench/bladelib' > apoa1_bench/bladelib/apoa1_bladelib_rtx5000ada.log
+# Does not run yet
+#python benchmark.py --benchmark='stmv_bench/openmm' > stmv_bench/openmm/stmv_openmm_rtx5000ada.log
+# Run domdec bench
+python benchmark.py --benchmark='2_T4L/charmm/template' > 2_T4L/charmm/template/t4l_charmm_rtx5000ada.log
+python benchmark.py --benchmark='4_HSP90/charmm/template' > 4_HSP90/charmm/template/hsp_charmm_rtx5000ada.log
+python benchmark.py --benchmark='5_newDHFR/charmm' > 5_newDHFR/charmm/newDHFR_charmm_rtx5000ada.log
+python benchmark.py --benchmark='6_dmpg/charmm' > 6_dmpg/charmm/dmpg_charmm_rtx5000ada.log
+python benchmark.py --benchmark='apoa1_bench/charmm' > apoa1_bench/charmm/apoa1_charmm_rtx5000ada.log
+echo "FINISHED"
+echo
+
+exit
+

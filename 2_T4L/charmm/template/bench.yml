@@ -1,0 +1,50 @@
+system: T4L149F
+ngpus: 1
+platform: domdec
+benchmark:
+   niter: 2
+msld:
+   variables_file: 'variables65.inp'
+   fnex: 5.5
+   temp: 298.15
+dyn:
+  nprint: 1000
+  nsteps: 5000
+  time_step: 0.004
+  temp: 298.15
+  leap: false
+  lang: false
+  cpt: true
+  pconstant: true
+  pmass: true
+  pref: 1.0
+  pgamma: 20.0
+  hoover: true
+  tmass: 1000
+  nsavl: 1000
+  ntrfrq: 5000
+  useblade: false
+  useomm: false
+  usedomdec: true
+files:
+  crd: ''
+  param: []
+  pdb: 'prep/minimized.pdb'
+  psf: ''
+  rtf: []
+  stream: ['"prep/T4L149F.inp"']
+nnb:
+  ctofnb: 9.0
+  ctonnb: 9.0
+  cutim: 9.0
+  cutnb: 9.0
+  fftx: 72
+  ffty: 72
+  fftz: 72
+  kappa: 0.32
+  vfswit: false
+  vswit: true
+pbc:
+  xtltyp: cubic
+  boxsize: [72.0,72.0,72.0]
+  segments: []

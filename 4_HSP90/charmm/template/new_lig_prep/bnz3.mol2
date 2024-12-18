@@ -1,0 +1,130 @@
+#	Created by:	Discovery Studio
+#	Creation time:	2019-01-17T16:25:58Z
+
+@<TRIPOS>MOLECULE
+benzimidazole
+   15    16     1 0 0
+PROTEIN
+USER_CHARGES
+
+
+@<TRIPOS>ATOM
+      1 C2            0.647000    0.096000   -0.318000 C.ar     1 NTL1       0.0882
+      2 C3            0.847000    1.019000    0.687000 C.ar     1 NTL1      -0.0342
+      3 HC1           1.735000    1.632000    0.703000 H        1 NTL1       0.0646
+      4 C4           -0.118000    1.184000    1.725000 C.ar     1 NTL1      -0.0600
+      5 HC2          -0.030000    1.953000    2.478000 H        1 NTL1       0.0623
+      6 C5           -1.258000    0.397000    1.679000 C.ar     1 NTL1      -0.0600
+      7 HC3          -1.912000    0.558000    2.523000 H        1 NTL1       0.0623
+      8 C6           -1.469000   -0.543000    0.703000 C.ar     1 NTL1      -0.0364
+      9 HC4          -2.402000   -1.087000    0.681000 H        1 NTL1       0.0645
+     10 C1           -0.484000   -0.713000   -0.327000 C.ar     1 NTL1       0.0653
+     11 N1           -0.390000   -1.535000   -1.462000 N.2      1 NTL1      -0.3446
+     12 C7            0.817000   -1.181000   -2.019000 C.2      1 NTL1       0.0932
+     13 HC5           1.069000   -1.619000   -2.985000 H        1 NTL1       0.1041
+     14 N2            1.402000   -0.251000   -1.382000 N.pl3    1 NTL1      -0.2369
+     15 H6            2.341867    0.186962   -1.646082 H        1 NTL1       0.0000
+@<TRIPOS>BOND
+     1    1   14 1
+     2    1   10 ar
+     3    1    2 ar
+     4    2    3 1
+     5    2    4 ar
+     6    4    6 ar
+     7    4    5 1
+     8    6    8 ar
+     9    6    7 1
+    10    8    9 1
+    11    8   10 ar
+    12   10   11 1
+    13   11   12 2
+    14   12   13 1
+    15   12   14 1
+    16   14   15 1
+@<TRIPOS>SUBSTRUCTURE
+1 NTL1 1 RESIDUE 1 _ NTL
+@<SCITEGIC>MOL_PROPERTY
+__PDBRemarks__
+SciTegic.value.StringValue
+
+
+@<SCITEGIC>MOL_PROPERTY
+__PDBSeqres__
+SciTegic.value.StringValue
+
+
+@<SCITEGIC>ATOM_PROPERTY
+Formal Charge
+SciTegic.value.StringValue
+1 0
+2 0
+3 0
+4 0
+5 0
+6 0
+7 0
+8 0
+9 0
+10 0
+11 0
+12 0
+13 0
+14 0
+15 0
+
+@<SCITEGIC>ATOM_PROPERTY
+pdb_tempFactor
+SciTegic.value.DoubleValue
+1 0.00
+2 0.00
+3 0.00
+4 0.00
+5 0.00
+6 0.00
+7 0.00
+8 0.00
+9 0.00
+10 0.00
+11 0.00
+12 0.00
+13 0.00
+14 0.00
+15 0.00
+
+@<SCITEGIC>ATOM_PROPERTY
+pdb_occupancy
+SciTegic.value.DoubleValue
+1 0.00
+2 0.00
+3 0.00
+4 0.00
+5 0.00
+6 0.00
+7 0.00
+8 0.00
+9 0.00
+10 0.00
+11 0.00
+12 0.00
+13 0.00
+14 0.00
+15 0.00
+
+@<SCITEGIC>ATOM_PROPERTY
+Segment ID
+SciTegic.value.StringValue
+1 LIGN
+2 LIGN
+3 LIGN
+4 LIGN
+5 LIGN
+6 LIGN
+7 LIGN
+8 LIGN
+9 LIGN
+10 LIGN
+11 LIGN
+12 LIGN
+13 LIGN
+14 LIGN
+

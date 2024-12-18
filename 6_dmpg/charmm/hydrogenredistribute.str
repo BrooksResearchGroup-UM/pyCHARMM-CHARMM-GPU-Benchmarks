@@ -1,0 +1,217 @@
+* Increase hydrogen mass such that mass of hydrogen-atom containing
+* heavy-H_n has same mass, but mass is redistributed such that
+* all hydrogen atoms have a mass of HMASS (see variable below)
+* Usage:
+*        1) assume that topology has been read
+*        2) call 'stream hydrogenredistribute.str'
+*        3) save psf 'write psf card form name heavyH.psf'
+*
+
+!  Note that this script first identifies the protein fragments by 
+!  selecting based on amino acid names. If your protein has non-standard
+!  amino acid names, those should be caught in STAGE 2. STAGE 1 loops over
+!  all heavy atom types in each amino acid residue type and reassigns 
+!  atom masses for all groups of that type.
+!
+!  Note special treatment for CYS SG atom because of the disulphide patch
+!  and all residues with a protonation-based patch (ASP OD2/HD2, GLU OG2/HG2
+!  LYS NZ/(-HT3), NTER N/(+HT3) 
+!
+
+       
+! Silent this long and tedious looping
+
+set pnode = 
+if ?numnode .gt. 1 set pnode = node 0
+prnlev 0 @pnode
+if @?hmass eq 0 set hmass 4
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!STAGE 1!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+define protein select ( resname ALA .or. -
+                        resname ARG .or. -
+                        resname ASN .or. -
+                        resname ASP .or. -
+                        resname CYS .or. -
+                        resname GLN .or. -
+                        resname GLU .or. -
+                        resname GLY .or. -
+                        resname HSD .or. -
+                        resname HSE .or. -
+                        resname HSP .or. -
+                        resname ILE .or. -
+                        resname LEU .or. -
+                        resname LYS .or. -
+                        resname MET .or. -
+                        resname PHE .or. -
+                        resname PRO .or. -
+                        resname SER .or. -
+                        resname THR .or. -
+                        resname TRP .or. -
+                        resname TYR .or. -
+                        resname VAL ) end
+
+! Renormalize masses on protein residues
+! Get all non-hydrogen atoms for all protein residues in the system
+define done select none end
+
+! Find all heavy atoms involved in patches where hydrogen valency changes
+define patched_protH select ( -
+            ( type N .and. -
+            ( .bonded. type HT3 ) ) - ! varous NTER patches
+   -
+       .or. ( ( resname ASP .and. type OD2 ) .and. -
+            ( .bonded. hydrogen ) ) -  !ASPP
+   -
+       .or. ( (resname GLU .and. type OE2 ) .and. -
+            ( .bonded. hydrogen ) ) -  !GLUP
+   -
+       .or. ( (resname LYS .and. type NZ ) .and. .not. -
+            ( .bonded. type HZ3 ) ) - !LYSN
+   -
+       .or. ( ( resname CYS .and. type SG ) .and. -
+            ( .bonded. hydrogen ) ) - !DISU
+   -
+      .and. ( protein ) ) end
+
+! Exclude patched_protH since they are involved in patched valency
+define all_protH sele protein .and. .not. -
+       ( ( patched_protH ) .or. hydrogen ) end
+
+
+label loop_pnh
+      ! Loop over all non-hydrogens in protein residues
+      set n ?NSEL
+      set resname = ?SELRESN
+      set name = ?SELTYPE
+
+      define done select done .or. ( type @name .and. resname @resname -
+             .and. protein ) end
+
+
+     ! Find the hydrogen atoms bonded to this heavy atom
+     define this_nh sele all_protH .subset. 1 end
+     define bonded sele hydrogen .and. .bonded. this_nh end
+     set nhydrogen = ?nsel
+     scalar mass stat sele bonded end
+     ! compute mass change
+     calc dmass = @nhydrogen * @hmass - ?stot
+     ! decrease bonded atom mass
+     scalar mass stat select this_nh end
+     calc newmass = ?save - @dmass
+     scalar mass set @newmass select type @name .and. resname @resname -
+            .and. all_protH end
+
+     define all_protH select all_protH .and. .not done end
+     if ?nsel gt 0 -
+goto loop_pnh
+
+! Get all non-hydrogen atoms for all protein residues in the system
+define done select none end
+
+! Find all heavey atoms involved in patches where hydrogen valency changes
+! Find all heavy atoms involved in patches where hydrogen valency changes
+define patched_protH select ( -
+            ( type N .and. -
+            ( .bonded. type HT3 ) ) - ! varous NTER patches
+   -
+       .or. ( ( resname ASP .and. type OD2 ) .and. -
+            ( .bonded. hydrogen ) ) -  !ASPP
+   -
+       .or. ( (resname GLU .and. type OE2 ) .and. -
+            ( .bonded. hydrogen ) ) -  !GLUP
+   -
+       .or. ( (resname LYS .and. type NZ ) .and. .not. -
+            ( .bonded. type HZ3 ) ) - !LYSN
+   -
+       .or. ( ( resname CYS .and. type SG ) .and. -
+            ( .bonded. hydrogen ) ) - !DISU
+   -
+      .and. ( protein ) ) end
+
+label loop_patched
+      ! Loop over all non-hydrogens in protein residues
+      set n ?NSEL
+      set resname = ?SELRESN
+      set name = ?SELTYPE
+
+      define done select done .or. ( type @name .and. resname @resname -
+             .and. protein ) end
+
+
+     ! Find the hydrogen atoms bonded to this heavy atom
+     define this_nh sele patched_protH .subset. 1 end
+     define bonded sele hydrogen .and. .bonded. this_nh end
+     set nhydrogen = ?nsel
+     scalar mass stat sele bonded end
+     ! compute mass change
+     calc dmass = @nhydrogen * @hmass - ?stot
+     ! decrease bonded atom mass
+     scalar mass stat select this_nh end
+     calc newmass = ?save - @dmass
+     scalar mass set @newmass select type @name .and. resname @resname -
+            .and. patched_protH end
+
+     define patched_protH select patched_protH .and. .not done end
+     if ?nsel gt 0 -
+goto loop_patched
+
+scalar mass set @hmass select hydrogen .and. protein  end
+
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!STAGE 2!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+
+define notprotorwat select .not. protein .and. .not. resname tip3 end
+
+! Renormalize masses on non-protein/non-water residues
+! Get all hydrogens for all protein residues in the system
+! Get all non-hydrogen atoms for all protein residues in the system
+define done select none end
+
+define all_protH sele notprotorwat .and. .not. hydrogen end
+
+label loop_npnh
+      ! Loop over all non-hydrogens in non-protein residues
+      set n ?NSEL
+      set resname = ?SELRESN
+      set name = ?SELTYPE
+
+      define done select done .or. ( type @name .and. resname @resname -
+             .and. notprotorwat ) end
+
+     ! Find the hydrogen atoms bonded to this heavy atom
+     define this_nh sele all_protH .subset. 1 end
+     define bonded sele hydrogen .and. .bonded. this_nh  end
+     set nhydrogen = ?nsel
+     scalar mass stat sele bonded end
+     ! compute mass change
+     calc dmass = @nhydrogen * @hmass - ?stot
+     ! decrease bonded atom mass
+     scalar mass stat select this_nh end
+     calc newmass = ?save - @dmass
+     scalar mass set @newmass select type @name .and. resname @resname -
+            .and. notprotorwat end
+
+     define all_protH select all_protH .and. .not done end
+     if ?nsel gt 0 -
+goto loop_npnh
+
+scalar mass set @hmass select hydrogen .and. notprotorwat  end
+
+! Ready to write modified psf
+!
+prnlev 5 @pnode
+echo "Save modified PSF to eliminate this computation"
+return
+
+

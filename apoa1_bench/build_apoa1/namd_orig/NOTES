@@ -1,0 +1,11 @@
+Comparing GPU-resident to GPU-offload on ApoA1 benchmark
+
+Benchmarking for A100 GPUs on TCB puck
+(HGX-A100: 4x A100-SXM4-40GB, 2x AMD EPYC 74F3 24-Core Processor)
+
+GPU-resident performed best launching 4 cores:
+$NAMD +p4 +setcpuaffinity +devices 0 apoa1_gpures_nve.namd
+
+GPU-offload performed best launcing all cores:
+$NAMD +p48 +setcpuaffinity +devices 0 apoa1_gpuoff_nve.namd
+

@@ -1,0 +1,46 @@
+system: dmpg290k
+ngpus: 1
+platform: domdec
+benchmark:
+   niter: 3
+dyn:
+  nprint: 1000
+  nsteps: 5000
+  time_step: 0.004
+  temp: 298.15
+  leap: false
+  lang: false
+  cpt: false
+  pconstant: false
+  pmass: false
+  pref: false
+  pgamma: false
+  hoover: true
+  tmass: 1000
+  nsavl: 0
+  ntrfrq: 5000
+  useblade: false  #'prmc iprs 100 pref 1 prdv 100'
+  useomm: false
+  usedomdec: true
+files:
+  crd: dmpg290k.crd
+  rtf: ['toppar/top_all36_lipid.rtf']
+  pdb: ''
+  psf: dmpg290k_hmr.psf
+  param: [['toppar/par_all36_lipid.prm'], False]
+  stream: ['"toppar/ions-noskov+roux-X=Onbfix.str"']
+nnb:
+  ctofnb: 9.0
+  ctonnb: 9.0
+  cutim: 9.0
+  cutnb: 9.0
+  fftx: 144
+  ffty: 192
+  fftz: 108
+  kappa: 0.34
+  vfswit: false
+  vswit: true
+pbc:
+  xtltyp: ortho
+  boxsize: [140.1228,186.8304,114.109]
+  segments: []

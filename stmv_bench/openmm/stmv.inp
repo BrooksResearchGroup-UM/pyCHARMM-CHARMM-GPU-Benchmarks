@@ -1,0 +1,34 @@
+* Benchmark for STMV virus system
+* Charles L. Brooks III
+*
+
+dimension chsize 1500000
+
+read rtf card name toppar/top_all36_prot.rtf
+read rtf card name toppar/top_all36_na.rtf append
+
+read param card name toppar/par_all36m_prot.prm flex
+read param card name toppar/par_all36_na.prm flex append
+
+stream toppar/toppar_water_ions.str
+
+read psf card name stmv_system.psf
+read coor card name stmv_system.crd
+
+crystal define cubic 216.832 216.832 216.832 90 90 90
+crystal build cutoff 8.0
+
+faster on
+nbonds cutnb 8 cutim 8 ctofnb 8 ctonnb 8 switch vswitch bycb -
+       inbfrq -1 ewald pmewald kappa 0.32 -
+       fftx 216 ffty 216 fftz 216 order 4
+
+shake bonh param
+
+dynamics leap lang start nstep 500 time 0.002 firstt 298 finalt 298 tbath 298 -
+         inbfrq 0 imgfrq 0 echeck -1 iprfrq 100 nprint 50 omm gamma 1 -
+	 ilbfrq 0 ihbfrq 0
+
+write coor card name end.chr
+
+stop

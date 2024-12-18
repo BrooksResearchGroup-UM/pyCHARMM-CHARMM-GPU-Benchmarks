@@ -1,0 +1,50 @@
+system: T4L149F
+ngpus: 1
+platform: blade
+benchmark:
+   niter: 5
+msld:
+   variables_file: 'variables65.inp'
+   fnex: 5.5
+   temp: 298.15
+dyn:
+  nprint: 10000
+  nsteps: 50000
+  time_step: 0.004
+  temp: 298.15
+  leap: true
+  lang: true
+  cpt: false
+  pconstant: false
+  pmass: false
+  pref: false
+  pgamma: false
+  hoover: false
+  tmass: false
+  nsavl: 1000
+  ntrfrq: 0
+  useblade: 'prmc iprs 100 pref 1 prdv 100'
+  useomm: false
+  usedomdec: false
+files:
+  crd: ''
+  param: []
+  pdb: 'prep/minimized.pdb'
+  psf: ''
+  rtf: []
+  stream: ['"prep/T4L149F.inp"']
+nnb:
+  ctofnb: 9.0
+  ctonnb: 9.0
+  cutim: 9.0
+  cutnb: 9.0
+  fftx: 72
+  ffty: 72
+  fftz: 72
+  kappa: 0.32
+  vfswit: false
+  vswit: true
+pbc:
+  xtltyp: cubic
+  boxsize: [72.0,72.0,72.0]
+  segments: []

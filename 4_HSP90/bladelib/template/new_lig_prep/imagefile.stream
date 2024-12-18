@@ -1,0 +1,15 @@
+** stream file to set up images for PBC
+*
+set L 65.530182 
+set XSIZ 65.530182 
+set YSIZ 65.530182 
+set ZSIZ 65.530182 
+Crystal define cubic @L @L @L 90 90 90
+Crystal build cutoff 14.0
+define salt sele atom * * SOD .or. atom * * POT .or. atom * * CAL .or. atom * * MG -
+.or. atom * * CLA .or. resn SO4 .or. resn PHO1 .or. resn PHO2 end
+define nonsolv sele (.not. salt) .and. (.not. resn tip*) end
+image byseg xcen 0.0 ycen 0.0 zcen 0.0 select nonsolv end
+image byres xcen 0.0 ycen 0.0 zcen 0.0 select resname tip* end
+image byres xcen 0.0 ycen 0.0 zcen 0.0 select salt end
+set hasxtal true 
