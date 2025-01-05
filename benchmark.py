@@ -59,10 +59,10 @@ yi.close()
 
 # Cell 2
 import pycharmm_init
-pycharmm_init.chsize = 1500000
+pycharmm_init.dimens.set_chsize(1500000)
 from pycharmm import *
 import pycharmm
-
+pycharmm_init.dimens.show(pycharmm.lib.charmm)
 # Cell 3
 def setup_nonbond(cutnb=9.0, ctofnb=9.0, ctonnb=9.0,
                   vswit=True, vfswit=False, kappa=0.32,
