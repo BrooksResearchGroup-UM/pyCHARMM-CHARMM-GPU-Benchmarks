@@ -52,8 +52,7 @@ python benchmark.py --benchmark='4_HSP90/bladelib/template' > 4_HSP90/bladelib/t
 python benchmark.py --benchmark='5_newDHFR/bladelib' > 5_newDHFR/bladelib/newDHFR_bladelib_rtx5500.log
 python benchmark.py --benchmark='6_dmpg/bladelib' > 6_dmpg/bladelib/dmpg_bladelib_rtx5500.log
 python benchmark.py --benchmark='apoa1_bench/bladelib' > apoa1_bench/bladelib/apoa1_bladelib_rtx5500.log
-# Does not run yet
-#python benchmark.py --benchmark='stmv_bench/openmm' > stmv_bench/openmm/stmv_openmm_rtx5500.log
+python benchmark.py --benchmark='stmv_bench/bladelib' > stmv_bench/bladelib/stmv_bladelib_rtx5500.log
 # Run domdec bench
 python benchmark.py --benchmark='2_T4L/charmm/template' > 2_T4L/charmm/template/t4l_charmm_rtx5500.log
 python benchmark.py --benchmark='4_HSP90/charmm/template' > 4_HSP90/charmm/template/hsp_charmm_rtx5500.log
