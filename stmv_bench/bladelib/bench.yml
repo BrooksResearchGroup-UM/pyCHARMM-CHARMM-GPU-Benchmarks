@@ -4,8 +4,8 @@ ngpus: 1
 benchmark:
    niter: 2
 dyn:
-  nprint: 1000
-  nsteps: 5000
+  nprint: 5000
+  nsteps: 10000
   time_step: 0.004
   temp: 298.15
   leap: true
