@@ -21,7 +21,7 @@
 <image src='figures/6_dmpg.jpg' />
 
 ## 1M particle STMV in water - hydrogen mass repartitioning (HMR), 4 fs, NPT 
-> ### pyCHARMM/OpenMM achieves nearly   $45\ ns /day$ on STMV bechmark.
+> ### pyCHARMM/OpenMM and pyCHARMM/BLaDE achieve nearly $45\ ns /day$ on STMV bechmark.
 
 <image src='figures/stmv_bench.jpg' />
 
